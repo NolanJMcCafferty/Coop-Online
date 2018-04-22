@@ -1,11 +1,11 @@
 <?php
 // Include the ShoppingCart class.  Since the session contains a
 // ShoppingCard object, this must be done before session_start().
-require "../application/cart.php";
+require "../application/model/cart.php";
 session_start();
-require 'dbconnect.php';
-$connection = connect_to_db("GSC");
-require 'queries.php';
+require '../public/sql/dbconnect.php';
+$connection = connect_to_db("COOP");
+require '../public/sql/queries.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,16 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // lastname validation
-  $lastnameResult = $_POST["lastname"];
-  if (empty($lastnameResult)) {
-    $lNameErr = "Name is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^[a-zA-Z\s]+$/", $firstnameResult)){
-    $finalCheck = false;
-    $lNameErr = "Must contain only letters!";
-  } else {
-    $finalCheck = true;
-  }
+  // $lastnameResult = $_POST["lastname"];
+  // if (empty($lastnameResult)) {
+  //   $lNameErr = "Name is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^[a-zA-Z\s]+$/", $firstnameResult)){
+  //   $finalCheck = false;
+  //   $lNameErr = "Must contain only letters!";
+  // } else {
+  //   $finalCheck = true;
+  // }
 
   // email validation
   $emailResult = $_POST["email"];
@@ -66,84 +66,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $finalCheck = true;
   }
 
-  // checks to see if username is correct
-  $usernameResult = $_POST["username"];
-  if (empty($usernameResult)) {
-    $usernameErr = "Username is required";
-    $finalCheck = false;
-  } else if ((!preg_match ("/^[a-z]{3,}$/i", $usernameResult))){
-    $finalCheck = false;
-    $usernameErr = "Must be 3 characters or more and only letters!";
-  } else {
-    $finalCheck = true;
-  }
+  // // checks to see if username is correct
+  // $usernameResult = $_POST["username"];
+  // if (empty($usernameResult)) {
+  //   $usernameErr = "Username is required";
+  //   $finalCheck = false;
+  // } else if ((!preg_match ("/^[a-z]{3,}$/i", $usernameResult))){
+  //   $finalCheck = false;
+  //   $usernameErr = "Must be 3 characters or more and only letters!";
+  // } else {
+  //   $finalCheck = true;
+  // }
 
   // number validation
-  $numberResult = $_POST["number"];
-  if (empty($numberResult)) {
-    $numberErr = "Phone number is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/", $numberResult)){
-    $finalCheck = false;
-    $numberErr = "Must match xxx-xxx-xxxx!";
-  } else {
-    $finalCheck = true;
-  }
+  // $numberResult = $_POST["number"];
+  // if (empty($numberResult)) {
+  //   $numberErr = "Phone number is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/", $numberResult)){
+  //   $finalCheck = false;
+  //   $numberErr = "Must match xxx-xxx-xxxx!";
+  // } else {
+  //   $finalCheck = true;
+  // }
 
   // street validation
-  $streetResult = $_POST["street"];
-  if (empty($streetResult)) {
-    $streetErr = "Street is required";
+  $collegeResult = $_POST["college"];
+  if (empty($collegeResult)) {
+    $streetErr = "College is required";
     $finalCheck = false;
   } else {
     $finalCheck = true;
   }
 
-  // city validation
-  $cityResult = $_POST["city"];
-  if (empty($cityResult)) {
-    $cityErr = "City is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^[a-zA-Z\s]+$/", $cityResult)){
-    $finalCheck = false;
-    $cityErr = "Must be letters only!";
-  } else {
-    $finalCheck = true;
-  }
+  // // city validation
+  // $cityResult = $_POST["city"];
+  // if (empty($cityResult)) {
+  //   $cityErr = "City is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^[a-zA-Z\s]+$/", $cityResult)){
+  //   $finalCheck = false;
+  //   $cityErr = "Must be letters only!";
+  // } else {
+  //   $finalCheck = true;
+  // }
 
   // state validation
-  $stateResult = $_POST["state"];
-  if (empty($stateResult)) {
-    $stateErr = "State is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^[a-zA-Z\s]+$/", $stateResult)){
-    $finalCheck = false;
-    $stateErr = "Must be letters only!";
-  }
+  // $stateResult = $_POST["state"];
+  // if (empty($stateResult)) {
+  //   $stateErr = "State is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^[a-zA-Z\s]+$/", $stateResult)){
+  //   $finalCheck = false;
+  //   $stateErr = "Must be letters only!";
+  // }
 
   // zipcode validation
-  $zipcodeResult = $_POST["zipcode"];
-  if (empty($zipcodeResult)){
-    $zipcodeErr = "Zipcode is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^[0-9]+$/",$zipcodeResult)) {
-    $finalCheck = false;
-    $zipcodeErr = "Zipcode must contain only numbers!";
-  } else {
-    $finalCheck = true;
-  }
-
-  // troop validation
-  $troopResult = $_POST["troop"];
-  if (empty($troopResult)) {
-    $troopErr = "Troop name is required";
-    $finalCheck = false;
-  } else if (!preg_match ("/^[a-zA-Z\s]+$/",$troopResult)){
-    $finalCheck = false;
-    $troopErr = "Letters only!";
-  } else {
-    $finalCheck = true;
-  }
+  // $zipcodeResult = $_POST["zipcode"];
+  // if (empty($zipcodeResult)){
+  //   $zipcodeErr = "Zipcode is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^[0-9]+$/",$zipcodeResult)) {
+  //   $finalCheck = false;
+  //   $zipcodeErr = "Zipcode must contain only numbers!";
+  // } else {
+  //   $finalCheck = true;
+  // }
+  //
+  // // troop validation
+  // $troopResult = $_POST["troop"];
+  // if (empty($troopResult)) {
+  //   $troopErr = "Troop name is required";
+  //   $finalCheck = false;
+  // } else if (!preg_match ("/^[a-zA-Z\s]+$/",$troopResult)){
+  //   $finalCheck = false;
+  //   $troopErr = "Letters only!";
+  // } else {
+  //   $finalCheck = true;
+  // }
 
 
   if ($finalCheck){
@@ -262,45 +262,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <br><br>
 </legend>
 
-<legend for = "number"> Phone Number:
-    <input id = "number" type="text" name="number">
-    <span class="info">* <?php echo $numberErr;?></span>
-<br><br>
-</legend>
 
 
-<legend for = "street"> Street: <input id = "street" type="text" name="street">
+<legend for = "college"> College: <input id = "street" type="text" name="college">
     <span class="info">* <?php echo $streetErr;?></span>
 <br><br>
 </legend>
 
-<legend for = "city"> City: <input id = "city" type="text" name="city">
-    <span class="info">* <?php echo $cityErr;?></span>
-<br><br>
-</legend>
-
-<legend for = "state"> State: <input id = "state" type="text" name="state">
-    <span class="info">* <?php echo $streetErr;?></span>
-<br><br>
-</legend>
-
-<legend for = "zipcode"> Zipcode: <input id = "zipcode" type="text" name="zipcode">
-    <span class="info">* <?php echo $zipcodeErr;?></span>
-<br><br>
-</legend>
-
-<h3>Girl Scout Information: </h3>
-<legend for = "username"> Username:
-    <input id = "username" type="text" name="username">
-    <span class="info">* <?php echo $usernameErr;?></span>
-<br><br>
-</legend>
-
-<legend for = "troop"> Troop Name:
-    <input id = "troop" type="text" name="troop">
-    <span class="info">* <?php echo $troopErr;?></span>
-<br><br>
-</legend>
 
 
     <input type="submit" name="submit" value="Submit" >
