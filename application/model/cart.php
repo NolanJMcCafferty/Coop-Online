@@ -6,7 +6,7 @@ class ShoppingCart {
 	
     // List of products that is used to generate the HTML menu.
     public static $foodTypes = Array("fountainburger" => "Fountain Burger",
-                                       "burrito" => "Burrito",
+                                       "burrito" => "Breakfast Burrito",
                                        "quesadilla" => "Quesadilla",
                                        "blt" => "BLT",
                                        "caesarsalad" => "Caesar Salad",
@@ -15,6 +15,18 @@ class ShoppingCart {
                                        "shake" => "Shake"
                                        );
 	
+
+    // list of prices for the food items
+    public static $prices = Array("fountainburger" => 7,
+                                       "burrito" => 6,
+                                       "quesadilla" => 5,
+                                       "blt" => 6,
+                                       "caesarsalad" => 5,
+                                       "icecream" => 3,
+                                       "float" => 4,
+                                       "shake" => 3
+                                       );
+
     // The array that contains the order
     private $order;
 	
