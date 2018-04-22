@@ -8,13 +8,15 @@ session_start();
 
 <head>
 <title>Coop Store Online</title>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script language="javascript">
 
 // Display the image corresponding to the food item that is selected.
 function updateImage () {
     var menu = document.getElementById("variety");
     var foodImage = document.getElementById("foodImage");
+    var footerImage = document.getElementById("footerImage");
+    footerImage.innerHTML = menu.options[menu.options.selectedIndex].value;
     foodImage.src = 
         'public/img/' + menu.options[menu.options.selectedIndex].value + '.jpg';
 }
@@ -49,19 +51,20 @@ function clearMessage () {
      update the image to match. -->
 <body onload="setDefaultVarietyAndQuantity(); updateImage();">
 
-<h2>Coop Store Order Form</h2>
+<h2 class="w3-container w3-blue">Coop Store Order Form</h2>
 
 <p>Please use the form below to add food items to your shopping cart.
 Thank you!</p>
 
 <form method="post">
-<table>
-  <tr><td>Variety</td><td>Quantity</td></tr>
+<table class="w3-table w3-striped w3-border">
+  <tr><td>Food Item</td><td>Quantity</td></tr>
 
   <tr><td><!-- Any time the selection changes, update the image and clear the message. -->
           <select id="variety" name="variety" onchange="updateImage(); clearMessage();">
 <?php 
             // We generate the options using information from the ShoppingCart class.
+
             foreach (ShoppingCart::$foodTypes as $key => $displayName) {
                 echo "<option id=\"$key\" value=\"$key\">$displayName</option>";
             }
@@ -76,7 +79,13 @@ Thank you!</p>
 </table>
 
 <!-- This is where updated food images are placed. -->
-<img id="foodImage"/><br>
+<div class="w3-card-4" style="width:25%;">
+  <img id="foodImage"/><br>
+  <footer class="w3-container w3-blue">
+      <h5 id="footerImage"></h5>
+  </footer>
+
+</div>
 
 <!-- This is where messages are displayed. -->
 <span style="color:red" id="message"><?php echo "$message" ?></span>
