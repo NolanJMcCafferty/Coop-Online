@@ -20,7 +20,7 @@ class View {
 
   public function checkOut()
   {
-  	//show checkout page
+  	include once("checkout.php");
   }
  
 }
