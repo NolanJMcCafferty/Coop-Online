@@ -41,8 +41,7 @@ class Model {
  	}
 
  	public function addToCart($variety, $quantity) {
- 		// todo
-
+        $_SESSION['cart']->update($variety, $quantity);
  	}
  
 }
