@@ -18,11 +18,9 @@ class View {
       include_once("orderForm.php");
   }
 
-  public function checkOut()
-  {
-  	include once("checkout.php");
+  public function checkout() {
+    header('Location: /Application/view/checkout.php');
   }
- 
 }
 
 ?>
