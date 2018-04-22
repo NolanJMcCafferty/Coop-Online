@@ -34,21 +34,12 @@
 
       }
       if($_POST["submitorder"] != null) {
+
         foreach ($shoppingCart as $variety=>$quantity) {
           $this->model->addToCart($variety, $quantity);  
         }
-       
-
-        $result = $this->model->addToCart();  
-  
-        if(preg_match('/invalid/',$result)) {
-          echo "$result";
+          $this->view->checkout();
         }
-        else {
-         $this->view->checkOut();
-        }
-
-      }
      
     }
   }
