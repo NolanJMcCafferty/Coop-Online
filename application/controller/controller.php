@@ -33,7 +33,7 @@
         }
 
       }
-      if($_POST["submitOrder"] != null) {
+      if($_POST["submitorder"] != null) {
         foreach ($shoppingCart as $variety=>$quantity) {
           $this->model->addToCart($variety, $quantity);  
         }
