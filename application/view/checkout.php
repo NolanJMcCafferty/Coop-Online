@@ -157,10 +157,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
  <table id="order" class="w3-table w3-striped w3-border">
-          <tr> <th>Food Item</th> <th>Quantity</th> <th>Price</th></tr> 
- 
-          <?php 
-          
+          <tr> <th>Food Item</th> <th>Quantity</th> <th>Price</th></tr>
+
+          <?php
+
           foreach($_SESSION['cart']->getOrder() as $variety=>$quantity) {
               $p = ShoppingCart::$prices[$variety];
               $price = $p * doubleval($quantity);
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>";
            }
 
-           
+
            ?>
       </table>
 
@@ -229,6 +229,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       document.getElementById('checkout').innerHTML='Order Confirmed';
 
     </script>";
+
+    // email system
+
+    $destinationEmail = $emailResult;
+    $fromEmail = "cooponlineinfo@gmail.com";
+    $message = "Thank you for your purchase! Your estimated time remaining is...";
+
+    // require the library for STMP email server
+    require("lib/PHPMailer/PHPMailerAutoload.php");
+
+    $mail = new PHPMailer();
+    // specify SMTP 
+    $mail->IsSMTP();
+
+    // server host
+    $mail->Host = "mail.example.com";
+
+    $mail->SMTPAuth = true;
+    
+    // login info to send emails
+    $mail->Username = "cooponlineinfo@gmail.com";
+    $mail->Password = "Coop123!";
+
+    $mail->From = $fromEmail;
+    $mail->AddAddress($destinationEmail, "Customer number...");
+
+    // set word wrap to 50 characters
+    $mail->WordWrap = 50;
+    // set email format to HTML
+    $mail->IsHTML(true);
+
+    $mail->Subject = "Confirmation number....!";
+
+    $mail->Body    = $message;
+    $mail->AltBody = $message;
+
+    if(!$mail->Send()){
+      echo "Message could not be sent.";
+      echo "Mailer Error: " . $mail->ErrorInfo;
+      exit;
+    }
+
+    echo "Message has been sent";
+
+
 }
 ?>
-
