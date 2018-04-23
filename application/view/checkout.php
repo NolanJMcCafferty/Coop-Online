@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 
-<h2 id="checkout">Checkout</h2>
+<h2 id="checkout" class="w3-container w3-blue">Checkout</h2>
 
 
 
@@ -148,19 +148,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </legend>
 
 
-    <input type="submit" name="submit" value="Submit" >
+    <input class="w3-btn w3-hover-grey w3-orange" type="submit" name="submit" value="Submit" >
 
 <p> * = required field </p>
 
-<p> Here is your order:</p>
+<h3 class="w3-container w3-blue"> Here is your order:</h3>
 
 </form>
 
  <table id="order" class="w3-table w3-striped w3-border">
-          <tr> <th>Food Item</th> <th>Quantity</th> <th>Price</th></tr>
-
-          <?php
-
+          <tr> <th>Food Item</th> <th>Quantity</th> <th>Price</th></tr> 
+ 
+          <?php 
+          
           foreach($_SESSION['cart']->getOrder() as $variety=>$quantity) {
               $p = ShoppingCart::$prices[$variety];
               $price = $p * doubleval($quantity);
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>";
            }
 
-
+           
            ?>
       </table>
 
@@ -183,8 +183,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 
   if ($finalCheck == "" && $_POST["number"]){
-    echo "Name is : $nameResult <br> Email: $emailResult <br> Student ID:  $numberResult <br> Building:  $buildingResult <br> Room Number:  $roomResult <br>" ;
-    echo "ORDER SUCCESSFUL! You will be recieving a confirmation email at $emailResult! <br>";
+    echo "<br>  <div class=\"w3-xlarge\" >Name: $nameResult <br> Email: $emailResult <br> Student ID:  $numberResult <br> Building:  $buildingResult <br> Room Number:  $roomResult <br>" ;
+    echo "ORDER SUCCESSFUL! You will be recieving a confirmation email at $emailResult </div><br>";
 
 
 
@@ -221,7 +221,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     session_unset();  // remove all session variables
     session_destroy();
-    echo "<p><a href=\"../../index.php\">Place another order!</a></p>";
+    echo "<br><br><br><p><center><button class=\"w3-btn w3-large w3-hover-grey w3-orange\" href=\"../../index.php\">Place another order!</button></center></p>";
 
     echo "<script>
       document.getElementById('order').style.display='none';
@@ -229,50 +229,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       document.getElementById('checkout').innerHTML='Order Confirmed';
 
     </script>";
-
-    // email system
-
-    $destinationEmail = $emailResult;
-    $fromEmail = "cooponlineinfo@gmail.com";
-    $message = "Thank you for your purchase! Your estimated time remaining is...";
-
-    // require the library for STMP email server
-    require("PHPMailerAutoload.php");
-
-    $mail = new PHPMailer();
-    // specify SMTP 
-    $mail->IsSMTP();
-
-    // server host
-    $mail->Host = "smtp.gmail.com";
-
-    $mail->SMTPAuth = true;
-    
-    // login info to send emails
-    $mail->Username = "cooponlineinfo@gmail.com";
-    $mail->Password = "Coop123!";
-
-    $mail->From = $fromEmail;
-    $mail->AddAddress($destinationEmail, "Customer number...");
-
-    // set word wrap to 50 characters
-    $mail->WordWrap = 50;
-    // set email format to HTML
-    $mail->IsHTML(true);
-
-    $mail->Subject = "Confirmation number....!";
-
-    $mail->Body    = $message;
-    $mail->AltBody = $message;
-
-    if(!$mail->Send()){
-      echo "Message could not be sent.";
-      echo "Mailer Error: " . $mail->ErrorInfo;
-      exit;
-    }
-
-    echo "Message has been sent";
-
-
 }
 ?>
+
