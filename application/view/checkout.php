@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->IsSMTP();
 
     // server host
-    $mail->Host = "mail.example.com";
+    $mail->Host = "smtp.gmail.com";
 
     $mail->SMTPAuth = true;
     
