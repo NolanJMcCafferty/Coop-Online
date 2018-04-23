@@ -237,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "Thank you for your purchase! Your estimated time remaining is...";
 
     // require the library for STMP email server
-    require("lib/PHPMailer/PHPMailerAutoload.php");
+    require("PHPMailerAutoload.php");
 
     $mail = new PHPMailer();
 
