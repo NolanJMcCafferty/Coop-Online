@@ -221,7 +221,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     session_unset();  // remove all session variables
     session_destroy();
-    echo "<br><br><br><p><center><button class=\"w3-btn w3-large w3-hover-grey w3-orange\" href=\"../../index.php\">Place another order!</button></center></p>";
+    echo "<br><br><br><p><center><a class=\"w3-btn w3-large w3-hover-grey w3-orange\" href=\"../../index.php\">Place another order!</a></center></p>";
 
     echo "<script>
       document.getElementById('order').style.display='none';
@@ -229,54 +229,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       document.getElementById('checkout').innerHTML='Order Confirmed';
 
     </script>";
-      
-    // email system
 
-    $destinationEmail = $emailResult;
-    $fromEmail = "cooponlineinfo@gmail.com";
-    $message = "Thank you for your purchase! Your estimated time remaining is...";
 
-    // require the library for STMP email server
-    require("PHPMailerAutoload.php");
+    $to = $emailResult;
+    $subject = "Order Confirmation";
+    $name = $nameResult;
+    $message = "
+    <html>
+      <head>
+        <title>HTML email</title>
+      </head>
+      <body>
+        <h1>Coop Store Online Order Confirmation</h1>
+        <p>Thank you for your order ".$name.". Your estimated wait time is 300 years!</p>
+        
+      </body>
+    </html>
+    ";
+    // Always set content-type when sending HTML email
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    // More headers
+    $headers .= 'From: <cooponlineinfo@gmail.com>' . "\r\n";
+    
+    mail($to,$subject,$message,$headers);
 
-    $mail = new PHPMailer();
 
-    $mail->IsSMTP();
 
-    // server host
-    $mail->Host = "smtp.gmail.com";
-      
-    //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-    $mail->Port = 587;
-    //Set the encryption system to use - ssl (deprecated) or tls
-    $mail->SMTPSecure = 'tls';
-
-    $mail->SMTPAuth = true;
-
-    $mail->Username = "cooponlineinfo@gmail.com";
-    $mail->Password = "Coop123!";
-
-    $mail->From = $fromEmail;
-    $mail->AddAddress($destinationEmail, "Customer number...");
-
-    // set word wrap to 50 characters
-    $mail->WordWrap = 50;
-    // set email format to HTML
-    $mail->IsHTML(true);
-
-    $mail->Subject = "Confirmation number....!";
-
-    $mail->Body    = $message;
-    $mail->AltBody = $message;
-
-    if(!$mail->Send()){
-      echo "Message could not be sent.";
-      echo "Mailer Error: " . $mail->ErrorInfo;
-      exit;
-    }
-
-    echo "Message has been sent";  
-      
 }
 ?>
-
