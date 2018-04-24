@@ -37,6 +37,8 @@ Coop-Online (Folder)
 	README.md
 
 
-Alex - Set up initial MVC modified it for our purposes instead of gsc, W3 css style for website, orderform/controller issue, presentation, README
-Matt - In charge of order form, field validation of fields in order form, creating presentation, session security
-Nolan - set up sql database php/database interaction and email notifications
+###Alex### - Set up initial MVC modified it for our purposes instead of gsc, W3 css style for website, orderform/controller issue, presentation, README
+
+###Matt### - In charge of order form, field validation of fields in order form, creating presentation, session security
+
+###Nolan### - set up sql database php/database interaction and email notifications
