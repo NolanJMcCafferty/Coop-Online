@@ -21,7 +21,7 @@ class View {
   public function checkout() {
           $shoppingCart = $this->model->getCart();
 
-    header('Location: /Coop-Online/application/view/checkout.php');
+    header('Location: ../Coop-Online/application/view/checkout.php');
   }
 }
 
