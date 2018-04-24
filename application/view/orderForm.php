@@ -1,8 +1,5 @@
 <?php 
 session_start();
-if (!empty($_SESSION)){
-  session_regenerate_id(TRUE);
-}
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +52,7 @@ function clearMessage () {
      update the image to match. -->
 <body onload="setDefaultVarietyAndQuantity(); updateImage();">
 
-<h2 class="w3-container w3-blue">Coop Store Order Form</h2>
+<h2 class="w3-container w3-blue">Coop Fountain Order Form</h2>
 
 <p>Please use the form below to add food items to your shopping cart.
 Thank you!</p>
