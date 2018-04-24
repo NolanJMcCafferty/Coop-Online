@@ -43,6 +43,7 @@ function setDefaultVarietyAndQuantity () {
 function clearMessage () {
     document.getElementById("message").innerHTML = "";
 }
+
 </script>
 </head>
 
