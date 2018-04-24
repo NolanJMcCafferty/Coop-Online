@@ -19,7 +19,7 @@ class View {
   }
 
   public function checkout() {
-    header('Location: /application/view/checkout.php');
+    header('Location: Coop-Online-masterv7/application/view/checkout.php');
   }
 }
 
