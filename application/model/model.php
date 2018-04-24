@@ -39,10 +39,6 @@ class Model {
  	public function getCart() {
  		return $_SESSION["cart"]->getOrder();
  	}
-
- 	public function addToCart($variety, $quantity) {
-        $_SESSION['cart']->update($variety, $quantity);
- 	}
  
 }
 
