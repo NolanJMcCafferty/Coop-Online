@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($finalCheck == "" && $_POST["number"]){
     echo "<br>  <div class=\"w3-xlarge\" >Name: $nameResult <br> Email: $emailResult <br> Student ID:  $numberResult <br> Building:  $buildingResult <br> Room Number:  $roomResult <br>" ;
-    echo "ORDER SUCCESSFUL! You will be recieving a confirmation email at $emailResult </div><br>";
+    echo "ORDER SUCCESSFUL! You will be receiving a confirmation email at $emailResult </div><br>";
 
 
 
@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     // More headers
-    $headers .= 'From: <cooponlineinfo@gmail.com>' . "\r\n";
+    $headers .= 'From: <headmaster@pomona.edu>' . "\r\n";
     
     mail($to,$subject,$message,$headers);
 
