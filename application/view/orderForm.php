@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if (!empty($_SESSION)){
+  session_regenerate_id(TRUE);
+}
 ?>
 
 <!DOCTYPE html>
