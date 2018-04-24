@@ -110,11 +110,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 
-<h2 id="checkout" class="w3-container w3-blue">Checkout</h2>
+<h2 id="checkout" class="w3-container w3-xxlarge w3-blue">Checkout</h2>
 
 
+<img src="../../public/img/cecil.jpg" style="float:right">
 
-<form method="post" id="info" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+<form method="post" style="margin-left:400px" id="info" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
 <!--ALL FORMS  -->
 <h3>Your Information: </h3>
@@ -152,9 +154,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <p> * = required field </p>
 
+</form><br>
+
+
 <h3 class="w3-container w3-blue"> Here is your order:</h3>
 
-</form>
 
  <table id="order" class="w3-table w3-striped w3-border">
           <tr> <th>Food Item</th> <th>Quantity</th> <th>Price</th></tr> 
