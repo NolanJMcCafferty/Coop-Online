@@ -19,7 +19,7 @@ class View {
   }
 
   public function checkout() {
-    header('Location: /Application/view/checkout.php');
+    header('Location: /application/view/checkout.php');
   }
 }
 
