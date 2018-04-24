@@ -19,7 +19,9 @@ class View {
   }
 
   public function checkout() {
-    header('Location: Coop-Online-masterv7/application/view/checkout.php');
+          $shoppingCart = $this->model->getCart();
+
+    header('Location: /Application/view/checkout.php');
   }
 }
 
