@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     // More headers
-    $headers .= 'From: <headmaster@pomona.edu>' . "\r\n";
+    $headers .= 'From: <kobeisgoat@pomona.edu>' . "\r\n";
     
     mail($to,$subject,$message,$headers);
 
