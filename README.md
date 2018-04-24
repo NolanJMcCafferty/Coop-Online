@@ -31,7 +31,8 @@ Coop-Online (Folder)
 
 	Public (Folder)
 
-	index.php - file that creates and invokes controller
+	index.php - welcome page
+	order.php - file that creates and invokes controller
 	coopdb.sql - Instantiates database on sql server creates the tables being used to store customer information
 	README.md
 
