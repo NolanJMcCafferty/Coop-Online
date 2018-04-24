@@ -15,11 +15,14 @@ session_start();
           <?php 
           
           foreach ($shoppingCart as $variety=>$quantity) {
-              
-          		echo "<tr>
-                <td>$variety</td>
+              $p = ShoppingCart::$prices[$variety];
+              $price = $p * doubleval($quantity);
+
+              $fooditem = ShoppingCart::$foodTypes[$variety];
+              echo "<tr>
+                <td>$fooditem</td>
                 <td>$quantity</td>
-                <td>$5</td>
+                <td>$$price</td>
                 </tr>";
            }
 
