@@ -98,7 +98,7 @@ Thank you!</p>
     $result = perform_query($connection, $query6);
     $orders = mysqli_num_rows($result);
 
-    echo "<p>num rows:  $orders  </p>";
+
     $index = 0;
     while ($row = mysqli_fetch_assoc($result)) {
         if($index == 0){
