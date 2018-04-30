@@ -1,5 +1,8 @@
 <?php 
 session_start();
+require 'application/model/dbconnect.php';
+$connection = connect_to_db("COOP");
+require 'application/model/queries.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +11,7 @@ session_start();
 
 <head>
 <title>Coop Store Online</title>
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script language="javascript">
 
@@ -86,6 +90,27 @@ Thank you!</p>
       <h5 id="footerImage"></h5>
   </footer>
 
+</div>
+<div>
+<?php
+    $query6 = "SELECT type, COUNT(*) FROM Food GROUP BY type ORDER BY COUNT(quantity) DESC";
+
+    $result = perform_query($connection, $query6);
+    $orders = mysqli_num_rows($result);
+
+    echo "<p>num rows:  $orders  </p>";
+    $index = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        if($index == 0){
+          $pop = $row['type'];
+          echo "<p>Most Popular Item: $pop </p>";
+          
+        }
+        $index =1;
+      
+        
+    }
+?>
 </div>
 
 <!-- This is where messages are displayed. -->
