@@ -146,18 +146,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <legend for = "room"> Room Number: <input id = "room" type="text" value="<?php echo $roomResult;?>" name="room">
     <span class="info">* <?php echo $roomErr;?></span>
-<br><br>
+<br>
 </legend>
-
-
-    <input class="w3-btn w3-hover-grey w3-orange" type="submit" name="submit" value="Submit" >
 
 <p> * = required field </p>
 
-</form><br>
+  <input class="w3-btn w3-hover-grey w3-orange" type="submit" name="submit" value="Submit">
+
+  <a style="float:right" class="w3-btn w3-hover-grey w3-blue" href="../../order.php">Change Your Order</a>
 
 
-<h3 class="w3-container w3-blue"> Here is your order:</h3>
+</form><br><br>
+
+<h3 class="w3-container w3-blue" id="label"> Here is your order:</h3>
 
 
  <table id="order" class="w3-table w3-striped w3-border">
@@ -223,6 +224,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     mysqli_stmt_close($insertFood);
 
+    $query5 = "SELECT * FROM PurchaseOrder";
+
+    $result = perform_query($connection, $query5);
+    $orders = mysqli_num_rows($result);
+    $waitTime = 15*$orders;
+
     session_unset();  // remove all session variables
     session_destroy();
     echo "<br><br><br><p><center><a class=\"w3-btn w3-large w3-hover-grey w3-orange\" href=\"../../index.php\">Place another order!</a></center></p>";
@@ -230,6 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script>
       document.getElementById('order').style.display='none';
       document.getElementById('info').style.display='none';
+      document.getElementById('label').style.display='none';
       document.getElementById('checkout').innerHTML='Order Confirmed';
 
     </script>";
@@ -245,7 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </head>
       <body>
         <h1>Coop Store Online Order Confirmation</h1>
-        <p>Thank you for your order ".$name.". Your estimated wait time is 300 years!</p>
+        <p>Thank you for your order ".$name.". Your estimated wait time is ".$waitTime." minutes!</p>
         
       </body>
     </html>
@@ -254,11 +262,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     // More headers
-    $headers .= 'From: <kobeisgoat@pomona.edu>' . "\r\n";
+    $headers .= 'From: <COOP-FOUNTAIN-ONLINE@pomona.edu>' . "\r\n";
     
     mail($to,$subject,$message,$headers);
-
-
 
 }
 ?>
