@@ -216,8 +216,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     foreach ($_SESSION['cart']->getOrder() as $variety => $quantity) {
-      $p = ShoppingCart::$prices[$variety];
-      $cost = $p * doubleval($quantity);
       $fooditem = ShoppingCart::$foodTypes[$variety];
       mysqli_stmt_execute($insertFood);
       print_r($connection->error);
