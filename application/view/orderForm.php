@@ -93,22 +93,17 @@ Thank you!</p>
 </div>
 <div>
 <?php
-    $query6 = "SELECT type, COUNT(*) FROM Food GROUP BY type ORDER BY COUNT(quantity) DESC";
+    $query6 = "SELECT name, COUNT(*) FROM Food f1, FoodItems f2 WHERE f1.foodid = f2.fid GROUP BY name ORDER BY COUNT(*) DESC";
 
     $result = perform_query($connection, $query6);
-    $orders = mysqli_num_rows($result);
-
 
     $index = 0;
     while ($row = mysqli_fetch_assoc($result)) {
         if($index == 0){
-          $pop = $row['type'];
+          $pop = $row['name'];
           echo "<p>Most Popular Item: $pop </p>";
-          
         }
         $index =1;
-      
-        
     }
 ?>
 </div>

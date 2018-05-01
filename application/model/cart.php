@@ -1,9 +1,9 @@
 <?php
-
 // Represents the shopping cart for a single session.
 
 class ShoppingCart {
 	
+
     // List of products that is used to generate the HTML menu.
     public static $foodTypes = Array("fountainburger" => "Fountain Burger",
                                        "burrito" => "Breakfast Burrito",
