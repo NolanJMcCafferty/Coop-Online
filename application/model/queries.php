@@ -26,13 +26,14 @@ if (!$insertPurchaseOrder) {
 	$insertPurchaseOrder ->bind_param("i", $cid);
 }
 
-// fourth query
-$query4 = "INSERT INTO Food (orderid, type, quantity) VALUES (?, ?, ?)";
+
+//fourth query 
+$query4 = "INSERT INTO Food (orderid, foodid, quantity) VALUES (?, ?, ?)";
 $insertFood = $connection->prepare($query4);
 if(!$insertFood) {
 	echo "Error preparing food order query". $connection->error;
 } else {
-	$insertFood-> bind_param("isi", $pid, $fooditem, $quantity);
+	$insertFood-> bind_param("iii", $pid, $fid, $quantity);
 }
 
 ?>

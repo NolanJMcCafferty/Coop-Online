@@ -1,3 +1,4 @@
+
 <?php
 // Include the ShoppingCart class.  Since the session contains a
 // ShoppingCard object, this must be done before session_start().
@@ -217,14 +218,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     foreach ($_SESSION['cart']->getOrder() as $variety => $quantity) {
       $fooditem = ShoppingCart::$foodTypes[$variety];
+      $query5 = "SELECT fid FROM FoodItems WHERE name=\"$fooditem\"";
+      $result = perform_query($connection, $query5);
+
+      $index = 0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        if($index == 0){
+          $fid = $row['fid'];
+        }
+        $index =1;
+    }
+
       mysqli_stmt_execute($insertFood);
       print_r($connection->error);
     }
-    mysqli_stmt_close($insertFood);
+      mysqli_stmt_close($insertFood);
 
-    $query5 = "SELECT * FROM PurchaseOrder";
+    $query6 = "SELECT * FROM PurchaseOrder";
 
-    $result = perform_query($connection, $query5);
+    $result = perform_query($connection, $query6);
     $orders = mysqli_num_rows($result);
     $waitTime = 15*$orders;
 
