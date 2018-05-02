@@ -37,6 +37,27 @@ require '../model/queries.php';
 
   <h1>Admin Page!</h1>
 
+  <?php
+  if(isset($_POST['delete_id'])){
+
+    $orderID = $_POST['orderidnum'];
+
+
+        $query = mysqli_query($connection, "DELETE FROM Food WHERE orderid= ".$orderID.";");
+        if(mysqli_affected_rows($connection)){
+        // success
+        echo "Successfully deleted order: " . $orderID."!";
+        }else{
+        // failure
+        echo "Failed to delete!";
+        }
+    }
+
+
+
+
+  ?>
+
 
   <?php
 
@@ -60,13 +81,21 @@ require '../model/queries.php';
         <td>$col1</td>
         <td>$col2</td>
         <td>$col3</td>
-        <td><button name = 'id'>Delete</button></td>
-        </tr>\n";
+        <td><td><form action = \"admin.php\" method = \"post\"/>
+        <input type = \"hidden\" name = \"orderidnum\" value = \"$col1\" />
+        <input type = \"submit\" class = \"buttonclass\" name = \"delete_id\" value = \"Delete Order\"/>
+        </form></td></tr>\n";
+
       }
       echo "</table>\n";
 
 
     }
+
+
+
+
+
 
 
 
