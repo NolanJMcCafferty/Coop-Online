@@ -2,7 +2,14 @@
 
 Website to order food from the Coop Fountain online. 
 
-First, start Sql and Apache in MAMP. Website uses php, javascript, html, w3css, SMTP email protocol, and mvc architecture. 
+To run website/application:
+Project files need to be in htcdocs folder under the MAMP application!
+
+1) Start SQL and Apache servers in MAMP.
+2) Create the Database by importing our coopdb.sql file
+3) Access your localhost server on your browser.
+4) Navigate to Coop-Online. Enjoy!
+
 
 Application Structure
 
@@ -19,7 +26,7 @@ Coop-Online (Folder)
 			querries.php - file containing relevant queries to the database
 
 		View (Folder)
-
+			admin.php - page for admins to view and delete orders
 			checkout.php - page that interfaces with db, stores information, and sends email
 			orderform.php - page users input their orders, uses sessions
 			view.php - main view others are loaded into
