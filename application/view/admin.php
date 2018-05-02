@@ -40,7 +40,7 @@ require '../model/queries.php';
 
   <?php
 
-    $sql = "SELECT * FROM Food;";
+    $sql = "SELECT * FROM FoodItems A, Food B WHERE B.foodid = A.fid;";
     $result = mysqli_query($connection, $sql);
     $resultCheck = mysqli_num_rows($result);
 
@@ -50,11 +50,10 @@ require '../model/queries.php';
       echo "<tr> <th> OrderID </th> <th> Item </th> <th> Quantity </th> ";
       while($row = mysqli_fetch_assoc($result)){
 
-        // echo "Order with id: " . $row['orderid']. " is  ";
-        // echo $row['type']. "<br>";
+
 
         $col1 = $row['orderid'];
-        $col2 = $row['type'];
+        $col2 = $row['name'];
         $col3 = $row['quantity'];
 
         echo "<tr>
